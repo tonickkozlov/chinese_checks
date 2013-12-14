@@ -25,3 +25,6 @@ HEADERS  += boardwidget.h \
 #FORMS    += mainwindow.ui
 
 QMAKE_CXXFLAGS += -std=c++0x
+
+RESOURCES += \
+    resources.qrc
