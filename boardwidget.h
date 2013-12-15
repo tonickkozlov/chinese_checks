@@ -17,7 +17,7 @@ class BoardWidget : public QWidget, public Printer
     Q_OBJECT
 public:
     explicit BoardWidget(QWidget *parent = 0);
-    void Draw(const Mat &matrix);
+    void Print(const Mat &matrix);
     ~BoardWidget();
 private:
     void updateCellPositions();

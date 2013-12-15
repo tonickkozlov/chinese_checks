@@ -56,6 +56,37 @@ private:
 
 typedef GameMatrix<CellsAtRow, CellsAtColumn> Mat;
 
+template <int nrows, int ncols>
+void fill_initial(GameMatrix<nrows, ncols> &matrix);
+
+template<>
+inline void fill_initial(Mat &matrix)
+{
+    const int n_rows = matrix.get_n_rows();
+    const int n_cols = matrix.get_n_cols();
+    for(int i = 0; i < n_rows; ++i)
+    {
+        for(int j = 0; j < n_cols; ++j)
+        {
+            if( (i > 1 && i < 5) || (j > 1 && j < 5) )
+            {
+                matrix.set_at(i, j, Mat::state::BUSY);
+                if( (i == 3) && (j == 3))
+                    matrix.set_at(i, j, Mat::state::FREE);
+            }
+            else
+                matrix.set_at(i, j, Mat::state::CLOSE);
+            }
+        }
+}
+
+
+template <class MatrixFiller, int nrows, int ncols>
+void fill_matrix(GameMatrix<nrows, ncols> &mat, MatrixFiller filler)
+{
+    filler(mat);
+}
+
 }
 
 #endif // GAMEMATRIX_H

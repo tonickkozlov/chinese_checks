@@ -35,10 +35,19 @@ void ConsoleInput:: Input()
 {
     Command com;
     Command StopCommand = Command(-1,-1,-1,-1);
-    while(com != StopCommand)
+    while(true)
     {
         std::cin >> com;
         gamestate_->make_move(com);
+        if(com == StopCommand)
+        {
+            break;
+        }
+        if(gamestate_->get_n_el() == 1)
+        {
+            std::cout << "YOU WIN :)" << std::endl;
+            break;
+        }
     }
 }
 

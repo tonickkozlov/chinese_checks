@@ -26,7 +26,7 @@ void BoardWidget::paintEvent(QPaintEvent *)
 {
 
 }
-void BoardWidget::Draw(const Mat &matrix)
+void BoardWidget::Print(const Mat &matrix)
 {
     const int nrows = matrix.get_n_rows();
     const int ncols = matrix.get_n_cols();
@@ -42,16 +42,16 @@ void BoardWidget::Draw(const Mat &matrix)
                 CellDrawStrategy::ptr   cell_draw_strategy;
                 switch(matrix.at(i, j))
                 {
-                /*case Mat::state::BUSY:
+                case Mat::state::BUSY:
 
-                    cell_draw_strategy = CellStrategyCreator::BusyCellDrawStrategy();
+                    cell_draw_strategy = CellDrawStrategy::ptr(new BusyCellDrawStrategy);
                     break;
                 case Mat::state::FREE:
-                    cell_draw_strategy = CellStrategyCreator::FreeCellDrawStrategy();
+                    cell_draw_strategy = CellDrawStrategy::ptr(new FreeCellDrawStrategy);
                     break;
                 default:
-                    cell_draw_strategy = CellStrategyCreator::EmptyCellDrawStrategy();
-                    break;*/
+                    cell_draw_strategy = CellDrawStrategy::ptr(new EmptyCellDrawStrategy);
+                    break;
                 }
                 current_cell->SetDrawStrategy(cell_draw_strategy);
             }

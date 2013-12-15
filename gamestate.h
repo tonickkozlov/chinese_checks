@@ -43,6 +43,7 @@ struct Command
         return (!(com == *this));
     }
 };
+
 class GameState
 {
 public:
@@ -55,15 +56,16 @@ public:
     };
     GameState(Printer* print);
     void make_move(Command);
+    int get_n_el();
 
 private:
     Mat matrix_;
     Printer* printer_;
+    int n_el;
     // initial game state
     // TODO: сделать фабрику? начальных состояний
-    void fill_initial();
     bool validate(Command);
-
+    int n_elements();
 };
 
 }
