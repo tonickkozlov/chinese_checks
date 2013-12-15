@@ -38,18 +38,22 @@ void BoardWidget::Draw(const Mat &matrix)
         {
             for(int j = 0; j < ncols; ++j)
             {
-                CellWidget::ptr current_cell = cells_[i * ncols + j];
+                CellWidget::ptr         current_cell = cells_[i * ncols + j];
+                CellDrawStrategy::ptr   cell_draw_strategy;
                 switch(matrix.at(i, j))
                 {
                 case Mat::state::BUSY:
-                        current_cell->setState(CellWidget::CELL_BUSY);
+
+                    cell_draw_strategy = CellStrategyCreator::BusyCellDrawStrategy();
                     break;
                 case Mat::state::FREE:
-                    current_cell->setState(CellWidget::CELL_FREE);
+                    cell_draw_strategy = CellStrategyCreator::FreeCellDrawStrategy();
                     break;
                 default:
-                    current_cell->setState(CellWidget::CELL_CLOSED);
+                    cell_draw_strategy = CellStrategyCreator::EmptyCellDrawStrategy();
+                    break;
                 }
+                current_cell->SetDrawStrategy(cell_draw_strategy);
             }
         }
     }

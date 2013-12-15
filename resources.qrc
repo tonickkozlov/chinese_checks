@@ -1,1 +1,7 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/">
+        <file>rc/busy.png</file>
+        <file>rc/closed.png</file>
+        <file>rc/free.png</file>
+    </qresource>
+</RCC>

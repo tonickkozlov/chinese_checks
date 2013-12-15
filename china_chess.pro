@@ -20,7 +20,8 @@ HEADERS  += boardwidget.h \
     cellwidget.h \
     gamestate.h \
     gamematrix.h \
-    chinese_chess.h
+    chinese_chess.h \
+    cell_draw_strategy.h
 
 #FORMS    += mainwindow.ui
 
