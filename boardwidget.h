@@ -12,7 +12,7 @@
 namespace ChineseChess
 {
 
-class BoardWidget : public QWidget
+class BoardWidget : public QWidget, public Printer
 {
     Q_OBJECT
 public:
@@ -24,6 +24,7 @@ private:
     void paintEvent(QPaintEvent *);
     void moveEvent(QMoveEvent *);
     void resizeEvent(QResizeEvent *);
+
     std::vector<CellWidget::ptr> cells_;
     
 signals:

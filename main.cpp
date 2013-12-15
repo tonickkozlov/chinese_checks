@@ -6,6 +6,7 @@
 
 #include "ConsolePrinter.h"
 #include "gamestate.h"
+#include "ConsoleInput.h"
 
 int main(int argc, char *argv[])
 {
@@ -24,7 +25,9 @@ int main(int argc, char *argv[])
     return a.exec();
     */
     ConsolePrinter* print = new ConsolePrinter;
-    GameState start(print);
+    GameState state(print);
+    ConsoleInput* input = new ConsoleInput(&state);
+    input->Input();
 
     return 0;
 }

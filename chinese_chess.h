@@ -2,7 +2,7 @@
 #define CHINESE_CHESS_H
 namespace ChineseChess
 {
-const int CellsAtRow = 9;
+const int CellsAtRow = 7;
 const int CellsAtColumn = CellsAtRow;
 
 }
