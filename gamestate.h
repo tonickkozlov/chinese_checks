@@ -7,23 +7,23 @@
 
 namespace ChineseChess {
 
-class IOutput
+class Printer
 {
 public:
-    virtual void Draw(const Mat&) =0;
-    virtual ~IOutput() {}
+    virtual void Print(const Mat &mat) = 0;
 };
 
 class GameState
 {
 public:
-    GameState(IOutput *output);
+    GameState(Printer* print);
 
 private:
-    GameMatrix<CellsAtRow, CellsAtColumn> matrix_;
+    Mat matrix_;
+    Printer* printer;
     // initial game state
+    // TODO: сделать фабрику? начальных состояний
     void fill_initial();
-    IOutput *output_;
 };
 
 }

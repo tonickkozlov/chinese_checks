@@ -47,7 +47,7 @@ struct BusyCellDrawStrategy: CellDrawStrategy
 
 struct CellStrategyCreator
 {
-    static CellDrawStrategy::ptr EmptyCellDrawStrategy()
+   /* static CellDrawStrategy::ptr EmptyCellDrawStrategy()
     {
         static CellDrawStrategy::ptr cell(new EmptyCellDrawStrategy);
         return cell;
@@ -62,6 +62,7 @@ struct CellStrategyCreator
         static CellDrawStrategy::ptr cell(new FreeCellDrawStrategy);
         return cell;
     }
+    */
 };
 
 

@@ -21,7 +21,8 @@ HEADERS  += boardwidget.h \
     gamestate.h \
     gamematrix.h \
     chinese_chess.h \
-    cell_draw_strategy.h
+    cell_draw_strategy.h \
+    ConsolePrinter.h
 
 #FORMS    += mainwindow.ui
 

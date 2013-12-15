@@ -12,7 +12,7 @@
 namespace ChineseChess
 {
 
-class BoardWidget : public QWidget, public IOutput
+class BoardWidget : public QWidget
 {
     Q_OBJECT
 public:

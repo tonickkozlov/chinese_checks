@@ -3,12 +3,15 @@
 namespace ChineseChess
 {
 
-GameState::GameState(IOutput* output)
+GameState::GameState(Printer *print)
 {
-    assert(output != nullptr);
-    output_ = output;
+    if(print == 0)
+    {
+        std::invalid_argument("print, shit");
+    }
+    printer = print;
     fill_initial();
-    output->Draw(matrix_);
+    print->Print(matrix_);
 }
 
 void GameState::fill_initial()

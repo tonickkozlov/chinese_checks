@@ -42,7 +42,7 @@ void BoardWidget::Draw(const Mat &matrix)
                 CellDrawStrategy::ptr   cell_draw_strategy;
                 switch(matrix.at(i, j))
                 {
-                case Mat::state::BUSY:
+                /*case Mat::state::BUSY:
 
                     cell_draw_strategy = CellStrategyCreator::BusyCellDrawStrategy();
                     break;
@@ -51,7 +51,7 @@ void BoardWidget::Draw(const Mat &matrix)
                     break;
                 default:
                     cell_draw_strategy = CellStrategyCreator::EmptyCellDrawStrategy();
-                    break;
+                    break;*/
                 }
                 current_cell->SetDrawStrategy(cell_draw_strategy);
             }
