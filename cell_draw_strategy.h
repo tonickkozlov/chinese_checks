@@ -7,6 +7,7 @@
 #include <QPainter>
 
 #include "chinese_chess.h"
+#include "itemdispencer.h"
 
 namespace ChineseChess
 {
@@ -16,14 +17,14 @@ struct CellDrawStrategy
 {
     typedef  std::shared_ptr<CellDrawStrategy> ptr;
     virtual void draw(QPainter &painter, int width, int height) =0;
+    virtual ~CellDrawStrategy() {}
 };
 
 struct EmptyCellDrawStrategy: CellDrawStrategy
 {
     void draw(QPainter &painter, int width, int height)
     {
-        QPixmap cell_pixmap(":/rc/closed.png");
-        painter.drawPixmap(0, 0, width, height, cell_pixmap);
+        painter.drawPixmap(0, 0, width, height, *dispencer<QPixmap>().Get("empty"));
     }
 };
 
@@ -31,8 +32,7 @@ struct FreeCellDrawStrategy: CellDrawStrategy
 {
     void draw(QPainter &painter, int width, int height)
     {
-        QPixmap cell_pixmap(":/rc/free.png");
-        painter.drawPixmap(0, 0, width, height, cell_pixmap);
+        painter.drawPixmap(0, 0, width, height, *dispencer<QPixmap>().Get("free"));
     }
 };
 
@@ -40,8 +40,7 @@ struct BusyCellDrawStrategy: CellDrawStrategy
 {
     void draw(QPainter &painter, int width, int height)
     {
-        QPixmap cell_pixmap(":/rc/busy.png");
-        painter.drawPixmap(0, 0, width, height, cell_pixmap);
+        painter.drawPixmap(0, 0, width, height, *dispencer<QPixmap>().Get("busy"));
     }
 };
 

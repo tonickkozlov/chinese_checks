@@ -40,7 +40,7 @@ bool GameState::validate(Command com)
 
 }
 
-int GameState:: n_elements()
+int GameState::n_elements()
 {
     int count = 0;
     for(int i = 0; i < matrix_.get_n_rows(); ++i)
@@ -65,7 +65,7 @@ void GameState::make_move(Command com)
             matrix_.set_at((com.from.first + com.to.first)/2,
                            (com.from.second + com.to.second)/2,
                            Mat::state::FREE);
-            n_el --;
+            n_el--;
             printer_->Print(matrix_);
         }
         catch(std::out_of_range &end_e)

@@ -23,7 +23,9 @@ HEADERS  += boardwidget.h \
     chinese_chess.h \
     cell_draw_strategy.h \
     ConsolePrinter.h \
-    ConsoleInput.h
+    ConsoleInput.h \
+    itemdispencer.h \
+    MouseClickStrategy.h
 
 #FORMS    += mainwindow.ui
 

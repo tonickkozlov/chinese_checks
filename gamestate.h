@@ -8,11 +8,6 @@
 
 namespace ChineseChess {
 
-class Printer
-{
-public:
-    virtual void Print(const Mat &mat) = 0;
-};
 struct Command
 {
     std::pair<int, int> from;
@@ -44,7 +39,19 @@ struct Command
     }
 };
 
-class GameState
+class Printer
+{
+public:
+    virtual void Print(const Mat &mat) = 0;
+    virtual ~Printer() {}
+};
+
+struct CommandExecutor
+{
+    virtual void make_move(Command) =0;
+};
+
+class GameState: public CommandExecutor
 {
 public:
     enum class state_command

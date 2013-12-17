@@ -8,6 +8,7 @@
 
 #include "chinese_chess.h"
 #include "cell_draw_strategy.h"
+#include "MouseClickStrategy.h"
 
 namespace ChineseChess
 {
@@ -18,18 +19,19 @@ class CellWidget : public QWidget
 public:
 
     typedef std::shared_ptr<CellWidget> ptr;
-    explicit CellWidget(QWidget *parent = 0);
+    explicit CellWidget(int id, QWidget *parent = 0);
     void SetDrawStrategy(CellDrawStrategy::ptr strategy);
+    void SetMouseClickStrategy(MouseClickStrategy::ptr strategy);
     ~CellWidget();
     
 private:
     CellDrawStrategy::ptr draw_strategy_;
+    MouseClickStrategy::ptr mouse_click_strategy_;
 
     void paintEvent(QPaintEvent *);
     void mouseReleaseEvent(QMouseEvent *);
 
-
-
+    int id_;
 
 };
 
