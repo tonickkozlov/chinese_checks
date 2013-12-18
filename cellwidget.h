@@ -17,7 +17,6 @@ class CellWidget : public QWidget
 {
     Q_OBJECT
 public:
-
     typedef std::shared_ptr<CellWidget> ptr;
     explicit CellWidget(int id, QWidget *parent = 0);
     void SetDrawStrategy(CellDrawStrategy::ptr strategy);

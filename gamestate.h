@@ -7,8 +7,11 @@
 #include "chinese_chess.h"
 
 namespace ChineseChess {
-
-struct Command
+/*!
+    Эта структура описывает ход игрока как две пары значений: начальная позиция шашки(x,y) и позиция назначения,
+    где окажется шашка после хода.
+*/
+struct Command // пара пар
 {
     std::pair<int, int> from;
     std::pair<int, int> to;
@@ -39,6 +42,11 @@ struct Command
     }
 };
 
+/*!
+  Класс Printer - абстрактный, содержит виртуальную функцию вывода матрицы на экран,
+  которая реализуется в консольном выводе матрицы на экран и в реализации графического интерфейса
+*/
+
 class Printer
 {
 public:
@@ -51,16 +59,15 @@ struct CommandExecutor
     virtual void make_move(Command) =0;
 };
 
+/*!
+    Этот класс описывает ходы игрока, изменяя матрицу состяния поля, а так же проверяет возможность сделать тот или иной ход.
+    Класс GameState содержит объект класса Printer, которому GameState делигирует вывод начального состояния матрицы на экран,
+    а также ее состояния после каждого корректного хода, проверенного методом validate(Command)
+*/
+
 class GameState: public CommandExecutor
 {
 public:
-    enum class state_command
-    {
-        RIGHT,
-        WRONG,
-        RIGHT_WON,
-        RIGHT_FAIL
-    };
     GameState(Printer* print);
     void make_move(Command);
     int get_n_el();
@@ -69,8 +76,6 @@ private:
     Mat matrix_;
     Printer* printer_;
     int n_el;
-    // initial game state
-    // TODO: сделать фабрику? начальных состояний
     bool validate(Command);
     int n_elements();
 };

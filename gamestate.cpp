@@ -8,7 +8,7 @@ GameState::GameState(Printer *print)
 {
     if(print == 0)
     {
-        std::invalid_argument("print, shit");
+        std::invalid_argument("print null");
     }
     printer_ = print;
     fill_matrix(matrix_, fill_initial<CellsAtRow, CellsAtColumn>);

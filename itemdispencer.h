@@ -21,27 +21,26 @@ private:
     std::map<std::string, Base_ptr> items_;
     ItemDispencer(const ItemDispencer &);
     void operator =(const ItemDispencer &);
-    ItemDispencer() {};
+    ItemDispencer() {}
 public:
-    // declare exception classes
+    // объявление классов исклчений
     struct ItemDispencerException {};
     struct ItemDoesNotExist: ItemDispencerException {};
     struct ItemAlreadyExists: ItemDispencerException {};
 
 
-    // add an item to dictionary with
+    // добавление item из словаря
     void Add(const std::string &key, Base_ptr new_item)
     {
-        if(items_.find(key) == items_.end())
-        {
-            // item already exists
+        if(items_[key])
+            throw ItemAlreadyExists();
+        else
             items_[key] = new_item;
-        }
     }
 
     Base_ptr Get(const std::string &key)
     {
-        typename std::map<std::string, Base_ptr>::const_iterator iter = items_.find(key);
+        typename std::map<std::string, Base_ptr>::const_iterator iter = items_.find(key); // find возвращает итератор
         if(iter == items_.end())
             throw ItemDoesNotExist();
         return iter->second;
@@ -55,10 +54,12 @@ public:
 
 };
 
-template <class Base> class ItemDispencer<Base *>;
+template <class Base> class ItemDispencer<Base *>; // когда мы порождаем виспенсер мы в шаблонный параметр кладем умный указатель на базовй класс
+// запрет использования указателей в шаблонных параметрах
+//частичная специализация шаблона
 
 template <class Base>
-ItemDispencer<Base>& dispencer()
+ItemDispencer<Base>& dispencer() // упрощает обращение к айтем.
 {
     return ItemDispencer<Base>::Instance();
 }

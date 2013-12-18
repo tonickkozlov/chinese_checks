@@ -42,25 +42,30 @@ public:
         }
     }
 
+    struct MatrixRangeExeption {};
+
 private:
     state elements_[n_rows][n_cols];
     void check_range(int i, int j) const
     {
         if(( i < 0 || i >= n_rows ) || ( j < 0 || j >= n_cols ))
         {
-            // TODO: обернуть в наше исключение
-            throw std::out_of_range("b"); // стандартное исключение, выбрасывается при неверном i или j
+            throw MatrixRangeExeption();
         }
     }
 };
 
 typedef GameMatrix<CellsAtRow, CellsAtColumn> Mat;
-
+/*!
+    шаблон принимает количество столбцов и колчество строк и подразумевает возможность
+    конкретизации для любого размера марицы с определенной геометрицеской логикой
+    Данный шаблон является реализацией паттерна Стратегия
+*/
 template <int nrows, int ncols>
 void fill_initial(GameMatrix<nrows, ncols> &matrix);
 
 template<>
-inline void fill_initial(Mat &matrix)
+inline void fill_initial(Mat &matrix) // конкретизация шаблона для матрицы 7*7
 {
     const int n_rows = matrix.get_n_rows();
     const int n_cols = matrix.get_n_cols();
@@ -80,7 +85,10 @@ inline void fill_initial(Mat &matrix)
         }
 }
 
-
+/*!
+    Шаблон fill_matrix подразумевает возможность заполнения матрицы любых размеров
+    филлером-заполнителем любой геометрической логики, то есть может использовать любую стратегию
+*/
 template <class MatrixFiller, int nrows, int ncols>
 void fill_matrix(GameMatrix<nrows, ncols> &mat, MatrixFiller filler)
 {

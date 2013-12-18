@@ -5,14 +5,17 @@
 #include <iostream>
 
 namespace ChineseChess {
-
+/*!
+    класс ConsolePrinter является наследником абстрактного класса Printer и реализует чисто виртуальную функцию
+    Print вывода на экран консоли игровой матрицы. В зависимости о состояния ячейки выводит определенный символ
+*/
 class ConsolePrinter: public Printer
 {
 public:
     void Print(const Mat &matrix)
     {
         std::cout << "  ";
-        for(int j = 0; j < matrix.get_n_cols(); ++ j)
+        for(int j = 0; j < matrix.get_n_cols(); ++j)
         {
             std::cout << j <<" ";
         }

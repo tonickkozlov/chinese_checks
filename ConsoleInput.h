@@ -5,7 +5,7 @@
 #include <iostream>
 namespace ChineseChess
 {
-std::istream& operator >> (std::istream& p, Command& com)
+std::istream& operator >> (std::istream& p, Command& com) // оператор ввода команды
 {
     p  >> com.from.first;
     p  >> com.from.second;
@@ -13,7 +13,9 @@ std::istream& operator >> (std::istream& p, Command& com)
     p  >> com.to.second;
     return p;
 }
-
+/*!
+    Класс ConsoleInput обеспечивает консольный ввод команд. Содержит объект класса GameState
+*/
 class ConsoleInput
 {
 public:
@@ -21,12 +23,13 @@ public:
     {
         if(g_state == 0)
         {
-            std::invalid_argument("b");
+            throw GamestateBadArgument();
         }
         gamestate_ = g_state;
     }
 
     void Input();
+    struct GamestateBadArgument {};
 private:
     GameState *gamestate_;
 };
@@ -34,18 +37,18 @@ private:
 void ConsoleInput:: Input()
 {
     Command com;
-    Command StopCommand = Command(-1,-1,-1,-1);
+    Command StopCommand = Command(-1,-1,-1,-1); // стоповая команда для консольного ввода
     while(true)
     {
         std::cin >> com;
-        gamestate_->make_move(com);
+        gamestate_->make_move(com); // делаем ход
         if(com == StopCommand)
         {
             break;
         }
         if(gamestate_->get_n_el() == 1)
         {
-            std::cout << "YOU WIN :)" << std::endl;
+            std::cout << "YOU WIN!" << std::endl;
             break;
         }
     }

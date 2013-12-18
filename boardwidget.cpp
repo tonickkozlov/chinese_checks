@@ -10,7 +10,9 @@
 
 namespace ChineseChess
 {
-
+/*
+  Три различных диспенсера для хранения различных типов данных.
+*/
 BoardWidget::BoardWidget(QWidget *parent) :
     QWidget(parent)
 {
@@ -65,7 +67,7 @@ void BoardWidget::Print(const Mat &matrix)
 {
     const int nrows = matrix.get_n_rows();
     const int ncols = matrix.get_n_cols();
-    assert(nrows * ncols == cells_.size());
+    //assert(nrows * ncols == cells_.size());
     try
     {
         // synchronize matrix state and states of all columns

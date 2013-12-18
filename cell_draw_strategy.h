@@ -27,7 +27,45 @@ struct EmptyCellDrawStrategy: CellDrawStrategy
         painter.drawPixmap(0, 0, width, height, *dispencer<QPixmap>().Get("empty"));
     }
 };
+/*
+//typedef std::map<std::string, CellDrawStrategy::ptr> strategy_dispencer;
+// init code:
+///
+class Singleton
+{
+public:
+    static Singleton& ReturnInstance()
+    {
+        static Singleton instance_;
+        return instance_;
+    }
+    CellDrawStrategy::ptr get_strategy(std::string key)
+    {
+        return dispencer_[key];
+    }
+    void put_strategy(std::string key, CellDrawStrategy::ptr strategy)
+    {
+        dispencer_[key] = strategy;
+    }
 
+private:
+    std::map<std::string, CellDrawStrategy::ptr> dispencer_;
+};
+
+//init code
+Singleton &sing = Singleton::ReturnInstance();
+sing.put_strategy("busy", BusyCellDrawStrategy)
+// use code
+
+// singleton user:
+#include "Singletone.h"
+Singletone sing;
+sing.GetIn..(); // wrong!
+//
+#include "Singletone.h"
+Singletone::ReturnInstance().getInt();
+
+*/
 struct FreeCellDrawStrategy: CellDrawStrategy
 {
     void draw(QPainter &painter, int width, int height)
@@ -43,27 +81,6 @@ struct BusyCellDrawStrategy: CellDrawStrategy
         painter.drawPixmap(0, 0, width, height, *dispencer<QPixmap>().Get("busy"));
     }
 };
-
-struct CellStrategyCreator
-{
-   /* static CellDrawStrategy::ptr EmptyCellDrawStrategy()
-    {
-        static CellDrawStrategy::ptr cell(new EmptyCellDrawStrategy);
-        return cell;
-    }
-    static CellDrawStrategy::ptr BusyCellDrawStrategy()
-    {
-        static CellDrawStrategy::ptr cell(new BusyCellDrawStrategy);
-        return cell;
-    }
-    static CellDrawStrategy::ptr FreeCellDrawStrategy()
-    {
-        static CellDrawStrategy::ptr cell(new FreeCellDrawStrategy);
-        return cell;
-    }
-    */
-};
-
 
 }
 
